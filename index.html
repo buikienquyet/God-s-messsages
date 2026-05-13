@@ -12,8 +12,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Inter', sans-serif;
-            overflow: hidden; /* Chặn cuộn trang */
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            overflow: hidden;
         }
 
         /* Video nền full màn hình */
@@ -25,88 +25,107 @@
             min-height: 100%;
             width: auto;
             height: auto;
-            z-index: -1; /* Đẩy video xuống dưới cùng */
-            object-fit: cover; /* Đảm bảo video lấp đầy màn hình */
-            filter: brightness(0.6); /* Làm tối video một chút để nổi bật nội dung */
+            z-index: -1;
+            object-fit: cover;
+            filter: brightness(0.5); /* Làm tối video để chữ dễ đọc hơn */
         }
 
-        /* Hiệu ứng Glassmorphism cho Card */
+        /* Thẻ Card hiệu ứng xuyên thấu (Glassmorphism) */
         .card {
             text-align: center;
-            padding: 30px;
-            background: rgba(15, 23, 42, 0.6); /* Trong suốt nhẹ */
-            backdrop-filter: blur(12px); /* Hiệu ứng kính mờ */
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 24px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
-            max-width: 450px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05); /* Rất trong suốt */
+            backdrop-filter: blur(15px); /* Làm mờ video phía sau card */
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            max-width: 550px;
+            width: 90%;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            margin: 20px;
             color: white;
+            transition: transform 0.3s ease;
         }
         
-        .img-container { 
-            width: 100%; 
-            height: 250px; 
-            border-radius: 16px; 
+        #quote { 
+            font-size: 1.4rem; 
+            line-height: 1.8; 
             margin-bottom: 25px; 
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            font-weight: 400; 
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
-        #quote-img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-        #quote { font-size: 1.2rem; line-height: 1.6; margin-bottom: 15px; font-weight: 500; min-height: 100px; display: flex; align-items: center; }
-        #author { color: #cbd5e1; font-size: 1rem; font-style: italic; display: block; margin-bottom: 20px; }
+        #author { 
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem; 
+            font-style: italic; 
+            display: block; 
+            margin-bottom: 35px; 
+            letter-spacing: 0.5px;
+        }
         
         button { 
-            width: 100%; padding: 15px; border: none; 
-            background: #3b82f6; color: white; border-radius: 12px; 
-            cursor: pointer; font-weight: 600; transition: 0.3s;
+            padding: 14px 30px; 
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: white; 
+            border-radius: 50px; /* Nút hình bo tròn mềm mại */
+            cursor: pointer; 
+            font-weight: 500; 
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
-        button:hover { background: #2563eb; transform: scale(1.02); }
+
+        button:hover { 
+            background: white; 
+            color: #000;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
 
-    <!-- Thẻ Video Nền -->
+    <!-- Video Nền -->
     <video autoplay muted loop playsinline id="bg-video">
         <source src="background.mp4" type="video/mp4">
-        Your browser does not support HTML5 video.
     </video>
 
     <div class="card">
-        <div class="img-container">
-            <img id="quote-img" src="" alt="Sứ điệp">
-        </div>
-        <div id="quote">Đang tải...</div>
+        <div id="quote">Đang nhận thông điệp...</div>
         <span id="author"></span>
         <button onclick="getRandomQuote()">Nhận Lời Chúa</button>
     </div>
 
     <script>
+        // Danh sách 8 câu từ hình ảnh bạn cung cấp
         const quotes = [
-            { text: "Hãy mạnh bạo và can đảm lên! Đừng sợ, đừng khiếp kinh, vì Đức Chúa, Thiên Chúa của ngươi, sẽ ở với ngươi bất cứ nơi nào ngươi đi tới.", author: "Giô-suê 1,9", img: "1.jpg" },
-            { text: "Đừng sợ, vì có Ta ở với con; đừng xao xuyến, vì Ta là Thiên Chúa của con. Ta cho con vững mạnh, Ta lại còn trợ giúp con, tay hữu xây thắng của Ta nâng đỡ con.", author: "I-sai-a 41,10", img: "2.jpg" },
-            { text: "Thầy để lại bình an cho anh em, Thầy ban cho anh em bình an của Thầy. Thầy ban cho anh em không theo kiểu thế gian. Anh em đừng xao xuyến cũng đừng sợ hãi.", author: "Gio-an 14,27", img: "3.jpg" },
-            { text: "Những người cậy trông Đức Chúa thì được thêm sức mạnh. Như thể chim bằng, họ cất cánh bay cao. Họ chạy hoài mà không mệt mỏi, đi mãi mà chẳng chồn chân.", author: "I-sai-a 40,31", img: "4.jpg" },
-            { text: "Chính Ta sẽ đi trước mặt ngươi, Ta sẽ ở với ngươi; Ta không bỏ mặc ngươi, Ta không bỏ rơi ngươi. Đừng sợ, đừng khiếp kinh!", author: "Đệ nhị luật 31,8", img: "5.jpg" },
-            { text: "Hãy ký thác đường đời cho Chúa, tin tưởng vào Người, Người sẽ ra tay.", author: "Thánh vịnh 37,5", img: "6.jpg" },
-            { text: "Mọi sự tôi đều có thể làm được trong Đấng ban sức mạnh cho tôi.", author: "Phi-líp-phê 4,13", img: "7.jpg" },
-            { text: "Đừng sợ, vì Ta đã chuộc con về, Ta đã gọi đích danh con, con là của riêng Ta. Con có băng qua nước, Ta sẽ ở cùng con; có vượt qua sông, cũng không bị nước cuốn; con có đi trong lửa, cũng không bị bỏng, ngọn lửa cũng chẳng thiêu chụi được con.", author: "I-sai-a 43,1-2", img: "8.jpg" }
+            { text: "Hãy mạnh bạo và can đảm lên! Đừng sợ, đừng khiếp kinh, vì Đức Chúa, Thiên Chúa của ngươi, sẽ ở với ngươi bất cứ nơi nào ngươi đi tới.", author: "Giô-suê 1,9" },
+            { text: "Đừng sợ, vì có Ta ở với con; đừng xao xuyến, vì Ta là Thiên Chúa của con. Ta cho con vững mạnh, Ta lại còn trợ giúp con, tay hữu xây thắng của Ta nâng đỡ con.", author: "I-sai-a 41,10" },
+            { text: "Thầy để lại bình an cho anh em, Thầy ban cho anh em bình an của Thầy. Thầy ban cho anh em không theo kiểu thế gian. Anh em đừng xao xuyến cũng đừng sợ hãi.", author: "Gio-an 14,27" },
+            { text: "Những người cậy trông Đức Chúa thì được thêm sức mạnh. Như thể chim bằng, họ cất cánh bay cao. Họ chạy hoài mà không mệt mỏi, đi mãi mà chẳng chồn chân.", author: "I-sai-a 40,31" },
+            { text: "Chính Ta sẽ đi trước mặt ngươi, Ta sẽ ở với ngươi; Ta không bỏ mặc ngươi, Ta không bỏ rơi ngươi. Đừng sợ, đừng khiếp kinh!", author: "Đệ nhị luật 31,8" },
+            { text: "Hãy ký thác đường đời cho Chúa, tin tưởng vào Người, Người sẽ ra tay.", author: "Thánh vịnh 37,5" },
+            { text: "Mọi sự tôi đều có thể làm được trong Đấng ban sức mạnh cho tôi.", author: "Phi-líp-phê 4,13" },
+            { text: "Đừng sợ, vì Ta đã chuộc con về, Ta đã gọi đích danh con, con là của riêng Ta. Con có băng qua nước, Ta sẽ ở cùng con; có vượt qua sông, cũng không bị nước cuốn; con có đi trong lửa, cũng không bị bỏng, ngọn lửa cũng chẳng thiêu chụi được con.", author: "I-sai-a 43,1-2" }
         ];
 
         function getRandomQuote() {
-            const imgTag = document.getElementById('quote-img');
-            imgTag.style.opacity = 0;
+            const card = document.querySelector('.card');
+            card.style.opacity = 0.8;
+            
             setTimeout(() => {
                 const index = Math.floor(Math.random() * quotes.length);
                 const item = quotes[index];
                 document.getElementById('quote').innerText = `"${item.text}"`;
                 document.getElementById('author').innerText = `— ${item.author}`;
-                imgTag.src = item.img;
-                imgTag.style.opacity = 1;
-            }, 400);
+                card.style.opacity = 1;
+            }, 200);
         }
+        
         window.onload = getRandomQuote;
     </script>
 </body>
