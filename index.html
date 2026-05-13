@@ -3,40 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Inspiration</title>
+    <title>Lời Chúa Mỗi Ngày</title>
     <style>
-        body { height: 100vh; display: flex; align-items: center; justify-content: center; background: #0f172a; font-family: 'Inter', system-ui, sans-serif; margin: 0; color: white; }
-        .card { text-align: center; padding: 40px; background: #1e293b; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); max-width: 600px; border: 1px solid #334155; }
-        #quote { font-size: 1.8rem; line-height: 1.4; margin-bottom: 25px; font-weight: 500; }
-        #author { color: #94a3b8; font-size: 1.1rem; letter-spacing: 1px; }
-        button { margin-top: 40px; padding: 12px 28px; border: none; background: #3b82f6; color: white; border-radius: 10px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+        body { height: 100vh; display: flex; align-items: center; justify-content: center; background: #0f172a; font-family: 'Inter', sans-serif; margin: 0; color: white; }
+        .card { text-align: center; padding: 25px; background: #1e293b; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); max-width: 500px; border: 1px solid #334155; margin: 20px; }
+        
+        .img-container { width: 100%; height: 280px; border-radius: 12px; margin-bottom: 20px; overflow: hidden; background: #334155; }
+        #quote-img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.5s ease-in-out; }
+        
+        #quote { font-size: 1.3rem; line-height: 1.6; margin-bottom: 20px; font-weight: 500; min-height: 120px; display: flex; align-items: center; justify-content: center; padding: 0 10px; }
+        #author { color: #94a3b8; font-size: 1.1rem; font-style: italic; display: block; margin-bottom: 15px; }
+        
+        button { width: 100%; padding: 15px; border: none; background: #3b82f6; color: white; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: 0.3s; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); }
         button:hover { background: #2563eb; transform: translateY(-2px); }
+        button:active { transform: translateY(0); }
     </style>
 </head>
 <body>
     <div class="card">
-        <div id="quote">Đang tải thông điệp...</div>
-        <div id="author"></div>
-        <button onclick="getRandomQuote()">Nhận thông điệp mới</button>
+        <div class="img-container">
+            <img id="quote-img" src="" alt="Sứ điệp">
+        </div>
+        <div id="quote">Đang nhận thông điệp...</div>
+        <span id="author"></span>
+        <button onclick="getRandomQuote()">Nhận Lời Chúa ngẫu nhiên</button>
     </div>
 
     <script>
         const quotes = [
-            { text: "Price is what you pay. Value is what you get.", author: "Warren Buffett" },
-            { text: "The best way to predict the future is to create it.", author: "Peter Drucker" },
-            { text: "Kỷ luật là cầu nối giữa mục tiêu và thành tựu.", author: "Jim Rohn" },
-            { text: "Data is the new oil, but it's only useful if it's refined.", author: "Clive Humby" },
-            { text: "Cách duy nhất để làm tốt một công việc là yêu nó.", author: "Steve Jobs" },
-            { text: "Sự tử tế là ngôn ngữ mà người điếc có thể nghe và người mù có thể thấy.", author: "Mark Twain" }
+            { text: "Hãy mạnh bạo và can đảm lên! Đừng sợ, đừng khiếp kinh, vì Đức Chúa, Thiên Chúa của ngươi, sẽ ở với ngươi bất cứ nơi nào ngươi đi tới.", author: "Giô-suê 1,9", img: "1.jpg" },
+            { text: "Đừng sợ, vì có Ta ở với con; đừng xao xuyến, vì Ta là Thiên Chúa của con. Ta cho con vững mạnh, Ta lại còn trợ giúp con, tay hữu xây thắng của Ta nâng đỡ con.", author: "I-sai-a 41,10", img: "2.jpg" },
+            { text: "Thầy để lại bình an cho anh em, Thầy ban cho anh em bình an của Thầy. Thầy ban cho anh em không theo kiểu thế gian. Anh em đừng xao xuyến cũng đừng sợ hãi.", author: "Gio-an 14,27", img: "3.jpg" },
+            { text: "Những người cậy trông Đức Chúa thì được thêm sức mạnh. Như thể chim bằng, họ cất cánh bay cao. Họ chạy hoài mà không mệt mỏi, đi mãi mà chẳng chồn chân.", author: "I-sai-a 40,31", img: "4.jpg" },
+            { text: "Chính Ta sẽ đi trước mặt ngươi, Ta sẽ ở với ngươi; Ta không bỏ mặc ngươi, Ta không bỏ rơi ngươi. Đừng sợ, đừng khiếp kinh!", author: "Đệ nhị luật 31,8", img: "5.jpg" },
+            { text: "Hãy ký thác đường đời cho Chúa, tin tưởng vào Người, Người sẽ ra tay.", author: "Thánh vịnh 37,5", img: "6.jpg" },
+            { text: "Mọi sự tôi đều có thể làm được trong Đấng ban sức mạnh cho tôi.", author: "Phi-líp-phê 4,13", img: "7.jpg" },
+            { text: "Đừng sợ, vì Ta đã chuộc con về, Ta đã gọi đích danh con, con là của riêng Ta. Con có băng qua nước, Ta sẽ ở cùng con; có vượt qua sông, cũng không bị nước cuốn; con có đi trong lửa, cũng không bị bỏng, ngọn lửa cũng chẳng thiêu chụi được con.", author: "I-sai-a 43,1-2", img: "8.jpg" }
         ];
 
         function getRandomQuote() {
-            const index = Math.floor(Math.random() * quotes.length);
-            const q = quotes[index];
-            document.getElementById('quote').innerText = `"${q.text}"`;
-            document.getElementById('author').innerText = `— ${q.author}`;
+            const imgTag = document.getElementById('quote-img');
+            imgTag.style.opacity = 0; // Hiệu ứng mờ đi khi chuyển
+            
+            setTimeout(() => {
+                const index = Math.floor(Math.random() * quotes.length);
+                const item = quotes[index];
+                
+                document.getElementById('quote').innerText = `"${item.text}"`;
+                document.getElementById('author').innerText = `— ${item.author}`;
+                imgTag.src = item.img;
+                imgTag.style.opacity = 1; // Hiệu ứng hiện rõ lại
+            }, 300);
         }
-        getRandomQuote();
+        
+        // Khởi tạo lần đầu
+        window.onload = getRandomQuote;
     </script>
 </body>
 </html>
