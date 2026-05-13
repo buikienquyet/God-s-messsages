@@ -2,94 +2,96 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Lời Chúa Mỗi Ngày</title>
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0; padding: 0; 
+            height: 100dvh; 
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Inter', -apple-system, sans-serif; 
             overflow: hidden;
+            background: #000;
         }
 
-        /* Video nền full màn hình */
+        /* Video nền tối ưu cho mobile và desktop */
         #bg-video {
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
+            position: fixed; top: 50%; left: 50%;
+            min-width: 100%; min-height: 100%;
+            width: auto; height: auto;
             z-index: -1;
-            object-fit: cover;
-            filter: brightness(0.5); /* Làm tối video để chữ dễ đọc hơn */
+            transform: translate(-50%, -50%);
+            object-fit: cover; 
+            filter: brightness(0.4);
         }
 
-        /* Thẻ Card hiệu ứng xuyên thấu (Glassmorphism) */
+        /* Card hiệu ứng kính mờ xuyên thấu */
         .card {
-            text-align: center;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.05); /* Rất trong suốt */
-            backdrop-filter: blur(15px); /* Làm mờ video phía sau card */
-            -webkit-backdrop-filter: blur(15px);
-            border-radius: 30px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-            max-width: 550px;
-            width: 90%;
+            text-align: center; 
+            padding: 2.5rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border-radius: 30px; 
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            width: 85%; 
+            max-width: 500px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: white;
-            transition: transform 0.3s ease;
+            box-sizing: border-box;
         }
         
         #quote { 
-            font-size: 1.4rem; 
-            line-height: 1.8; 
-            margin-bottom: 25px; 
-            font-weight: 400; 
-            min-height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 1.3rem; 
+            line-height: 1.7; 
+            margin-bottom: 1.5rem; 
+            min-height: 150px; 
+            display: flex; align-items: center; justify-content: center;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         #author { 
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1.1rem; 
-            font-style: italic; 
+            color: rgba(255, 255, 255, 0.7); 
             display: block; 
-            margin-bottom: 35px; 
+            margin-bottom: 2.5rem; 
+            font-style: italic;
+            font-size: 1rem;
             letter-spacing: 0.5px;
         }
         
         button { 
-            padding: 14px 30px; 
+            width: 100%;
+            padding: 16px; 
             border: 1px solid rgba(255, 255, 255, 0.3);
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1); 
             color: white; 
-            border-radius: 50px; /* Nút hình bo tròn mềm mại */
+            border-radius: 50px; 
             cursor: pointer; 
-            font-weight: 500; 
-            font-size: 0.95rem;
+            font-weight: 600;
+            font-size: 1rem;
             transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
+            -webkit-tap-highlight-color: transparent;
         }
 
-        button:hover { 
+        button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        button:active { 
+            transform: scale(0.95); 
             background: white; 
-            color: #000;
-            transform: scale(1.05);
+            color: #000; 
+        }
+
+        @media (max-width: 480px) {
+            #quote { font-size: 1.2rem; min-height: 120px; }
+            .card { padding: 2rem 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Video Nền -->
+    <!-- Chỉ giữ lại Video Nền -->
     <video autoplay muted loop playsinline id="bg-video">
         <source src="background.mp4" type="video/mp4">
     </video>
@@ -101,7 +103,7 @@
     </div>
 
     <script>
-        // Danh sách 8 câu từ hình ảnh bạn cung cấp
+        // Danh sách 8 câu từ ảnh của bạn
         const quotes = [
             { text: "Hãy mạnh bạo và can đảm lên! Đừng sợ, đừng khiếp kinh, vì Đức Chúa, Thiên Chúa của ngươi, sẽ ở với ngươi bất cứ nơi nào ngươi đi tới.", author: "Giô-suê 1,9" },
             { text: "Đừng sợ, vì có Ta ở với con; đừng xao xuyến, vì Ta là Thiên Chúa của con. Ta cho con vững mạnh, Ta lại còn trợ giúp con, tay hữu xây thắng của Ta nâng đỡ con.", author: "I-sai-a 41,10" },
@@ -114,18 +116,21 @@
         ];
 
         function getRandomQuote() {
-            const card = document.querySelector('.card');
-            card.style.opacity = 0.8;
+            const index = Math.floor(Math.random() * quotes.length);
+            const item = quotes[index];
+            
+            // Hiệu ứng đổi chữ nhẹ nhàng
+            const quoteEl = document.getElementById('quote');
+            quoteEl.style.opacity = 0;
             
             setTimeout(() => {
-                const index = Math.floor(Math.random() * quotes.length);
-                const item = quotes[index];
-                document.getElementById('quote').innerText = `"${item.text}"`;
+                quoteEl.innerText = `"${item.text}"`;
                 document.getElementById('author').innerText = `— ${item.author}`;
-                card.style.opacity = 1;
+                quoteEl.style.opacity = 1;
             }, 200);
         }
-        
+
+        // Tự động hiện 1 câu khi vừa load trang
         window.onload = getRandomQuote;
     </script>
 </body>
