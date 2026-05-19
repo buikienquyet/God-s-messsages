@@ -84,14 +84,13 @@
         }
 
         @media (max-width: 480px) {
-            #quote { font-size: 1.2rem; min-height: 120px; }
+            #quote { font-size: 1.1rem; min-height: 120px; }
             .card { padding: 2rem 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Chỉ giữ lại Video Nền -->
     <video autoplay muted loop playsinline id="bg-video">
         <source src="background.mp4" type="video/mp4">
     </video>
@@ -103,35 +102,8 @@
     </div>
 
     <script>
-        // Danh sách 8 câu từ ảnh của bạn
+        // Danh sách 25 câu quote mới của bạn
         const quotes = [
-            { text: "Hãy mạnh bạo và can đảm lên! Đừng sợ, đừng khiếp kinh, vì Đức Chúa, Thiên Chúa của ngươi, sẽ ở với ngươi bất cứ nơi nào ngươi đi tới.", author: "Giô-suê 1,9" },
-            { text: "Đừng sợ, vì có Ta ở với con; đừng xao xuyến, vì Ta là Thiên Chúa của con. Ta cho con vững mạnh, Ta lại còn trợ giúp con, tay hữu xây thắng của Ta nâng đỡ con.", author: "I-sai-a 41,10" },
-            { text: "Thầy để lại bình an cho anh em, Thầy ban cho anh em bình an của Thầy. Thầy ban cho anh em không theo kiểu thế gian. Anh em đừng xao xuyến cũng đừng sợ hãi.", author: "Gio-an 14,27" },
-            { text: "Những người cậy trông Đức Chúa thì được thêm sức mạnh. Như thể chim bằng, họ cất cánh bay cao. Họ chạy hoài mà không mệt mỏi, đi mãi mà chẳng chồn chân.", author: "I-sai-a 40,31" },
-            { text: "Chính Ta sẽ đi trước mặt ngươi, Ta sẽ ở với ngươi; Ta không bỏ mặc ngươi, Ta không bỏ rơi ngươi. Đừng sợ, đừng khiếp kinh!", author: "Đệ nhị luật 31,8" },
-            { text: "Hãy ký thác đường đời cho Chúa, tin tưởng vào Người, Người sẽ ra tay.", author: "Thánh vịnh 37,5" },
-            { text: "Mọi sự tôi đều có thể làm được trong Đấng ban sức mạnh cho tôi.", author: "Phi-líp-phê 4,13" },
-            { text: "Đừng sợ, vì Ta đã chuộc con về, Ta đã gọi đích danh con, con là của riêng Ta. Con có băng qua nước, Ta sẽ ở cùng con; có vượt qua sông, cũng không bị nước cuốn; con có đi trong lửa, cũng không bị bỏng, ngọn lửa cũng chẳng thiêu chụi được con.", author: "I-sai-a 43,1-2" }
-        ];
-
-        function getRandomQuote() {
-            const index = Math.floor(Math.random() * quotes.length);
-            const item = quotes[index];
-            
-            // Hiệu ứng đổi chữ nhẹ nhàng
-            const quoteEl = document.getElementById('quote');
-            quoteEl.style.opacity = 0;
-            
-            setTimeout(() => {
-                quoteEl.innerText = `"${item.text}"`;
-                document.getElementById('author').innerText = `— ${item.author}`;
-                quoteEl.style.opacity = 1;
-            }, 200);
-        }
-
-        // Tự động hiện 1 câu khi vừa load trang
-        window.onload = getRandomQuote;
-    </script>
-</body>
-</html>
+            { text: "Hãy hành động ngay hôm nay sao cho ngày mai bạn không phải xấu hổ.", author: "Thánh John Bosco" },
+            { text: "Hãy bắt đầu làm ngay từ bây giờ để trở thành người mà bạn muốn sẽ thành trong tương lai.", author: "Thánh Jerome" },
+            { text: "Đức tin và sự tin tưởng vào Chúa có thể giúp chúng ta vượt qua ngay cả những hoàn cảnh khó khăn nhất.", author: "
